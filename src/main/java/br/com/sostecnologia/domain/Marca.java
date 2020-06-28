@@ -3,6 +3,7 @@ package br.com.sostecnologia.domain;
 import lombok.Data;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
 import java.util.Objects;
 
 @Data
@@ -14,7 +15,7 @@ public class Marca {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
-    @Column(name= "nome")
+    @Column(name= "nome", unique = true, nullable = false)
     private String nome;
 
     public Marca() {

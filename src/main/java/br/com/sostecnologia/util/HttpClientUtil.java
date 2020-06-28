@@ -4,11 +4,11 @@ import br.com.sostecnologia.exception.RequestException;
 import com.squareup.okhttp.*;
 import org.apache.log4j.Logger;
 
-public class RequestAPIUtil {
+public class HttpClientUtil {
 
-    protected static final Logger logger = Logger.getLogger(RequestAPIUtil.class);
+    protected static final Logger logger = Logger.getLogger(HttpClientUtil.class);
 
-    public static String ostRequest(String body, HttpUrl httpUrl) throws Exception{
+    public static String postRequest(String body, HttpUrl httpUrl) throws Exception{
 
         logger.info("Iniciando REST Request POST");
         try {

@@ -1,8 +1,10 @@
 package br.com.sostecnologia.domain;
 
 import lombok.Data;
+import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
 import java.io.Serializable;
 import java.util.Objects;
 
@@ -16,11 +18,13 @@ public class Patrimonio implements Serializable {
     private Long id;
 
     @ManyToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "marcaId")
+    @JoinColumn(name = "marcaId", nullable = false)
     private Marca marcaId;
 
+    @GeneratedValue(generator = "uuid")
+    @GenericGenerator(name = "uuid", strategy = "uuid")
     @Column(name= "numeroTombo")
-    private Long numeroTombo;
+    private String numeroTombo;
 
     @Column(name= "nome")
     private String nome;
@@ -31,7 +35,7 @@ public class Patrimonio implements Serializable {
     public Patrimonio() {
     }
 
-    public Patrimonio(Long id, Marca marcaId, Long numeroTombo, String nome, String descricao) {
+    public Patrimonio(Long id, Marca marcaId, String numeroTombo, String nome, String descricao) {
         this.id = id;
         this.marcaId = marcaId;
         this.numeroTombo = numeroTombo;
@@ -53,14 +57,6 @@ public class Patrimonio implements Serializable {
 
     public void setMarcaId(Marca marcaId) {
         this.marcaId = marcaId;
-    }
-
-    public Long getNumeroTombo() {
-        return numeroTombo;
-    }
-
-    public void setNumeroTombo(Long numeroTombo) {
-        this.numeroTombo = numeroTombo;
     }
 
     public String getNome() {

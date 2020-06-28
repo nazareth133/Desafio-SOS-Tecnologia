@@ -17,7 +17,7 @@ public class MarcaService {
         return marcaRepository.save(marca);
     }
 
-    public Marca alterarMarca(Marca marca){
+    public Marca editarMarca(Marca marca){
         return marcaRepository.update(marca);
     }
 
@@ -29,7 +29,7 @@ public class MarcaService {
         return marcaRepository.find(marca.getId()).get();
     }
 
-    public List<Marca> listarMarca(Marca marca){
+    public List<Marca> listarMarca(){
         return marcaRepository.findAll();
     }
 

@@ -12,7 +12,7 @@ import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
 
-public abstract class AbstractRepository<T> {
+public abstract class AbstractRepository<T> implements CustomHibernateSession<T>{
 
     private Logger logger = Logger.getLogger(AbstractRepository.class);
 

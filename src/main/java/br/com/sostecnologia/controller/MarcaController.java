@@ -1,65 +1,70 @@
 package br.com.sostecnologia.controller;
 
 import br.com.sostecnologia.domain.Marca;
+import br.com.sostecnologia.domain.Patrimonio;
 import br.com.sostecnologia.repository.MarcaRepository;
-import io.swagger.annotations.ApiOperation;
-import io.swagger.annotations.ApiResponse;
-import io.swagger.annotations.ApiResponses;
+import br.com.sostecnologia.service.MarcaService;
+import br.com.sostecnologia.service.PatrimonioService;
+import br.com.sostecnologia.to.MarcaTO;
+import br.com.sostecnologia.to.PatrimonioTO;
+import br.com.sostecnologia.util.ConstantsUtil;
+import br.com.sostecnologia.util.MappingUtil;
 
+import javax.enterprise.context.ApplicationScoped;
 import javax.inject.Inject;
+import javax.inject.Named;
 import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 
-@Path("/sos-tecnologia/api")
-public class MarcaController {
+@ApplicationScoped
+@Named(value = "marcaController")
+@Path("/api/sos-tecnologia")
+public class MarcaController extends AbstractController {
 
     @Inject
-    private MarcaRepository marcaRepository;
+    private MarcaService marcaService;
 
-    @GET
-    @Path("/marcas")
-    @ApiOperation(value = "Retorna uma lista de marcas", notes = "Retorna uma lista de marcas")
-    @ApiResponses(value = {@ApiResponse(code = 200, message = "Um objeto JSON contendo uma lista de marcas.")})
-    @Produces(MediaType.APPLICATION_JSON)
-    public Response listarMarcas(){
-        return Response.ok().build();
-    }
+    @Inject
+    private MarcaTO marcaTO;
 
-    @GET
-    @Path("/marcas/{id}")
-    @ApiOperation(value = "Retorna uma lista de marcas", notes = "Retorna uma lista de marcas")
-    @ApiResponses(value = {@ApiResponse(code = 200, message = "Um objeto JSON contendo uma lista de marcas.")})
-    @Produces(MediaType.APPLICATION_JSON)
-    public Response listarMarca(@PathParam("id") String id){
-        return Response.ok().build();
-    }
+    @Inject
+    private MappingUtil<Marca, MarcaTO> mappingUtil;
 
     @POST
-    @Path("/marcas/{id}")
-    @ApiOperation(value = "Retorna uma lista de marcas", notes = "Retorna uma lista de marcas")
-    @ApiResponses(value = {@ApiResponse(code = 200, message = "Um objeto JSON contendo uma lista de marcas.")})
+    @Path(ConstantsUtil.CRIAR_MARCA_PATH)
     @Produces(MediaType.APPLICATION_JSON)
-    public Response criarMarca(@BeanParam Marca marca){
-        return Response.ok().build();
+    public Response criarMarca(@BeanParam MarcaTO marcaTO){
+        return Response.ok(marcaService.criarMarca(mappingUtil.toToEntity(marcaTO, Marca.class))).build();
     }
 
     @PUT
-    @Path("/marcas/{id}")
-    @ApiOperation(value = "Retorna uma lista de marcas", notes = "Retorna uma lista de marcas")
-    @ApiResponses(value = {@ApiResponse(code = 200, message = "Um objeto JSON contendo uma lista de marcas.")})
+    @Path(ConstantsUtil.EDITAR_MARCA_PATH)
     @Produces(MediaType.APPLICATION_JSON)
-    public Response alterarMarca(@PathParam("id") String id,
-                                 @BeanParam Marca marca){
-        return Response.ok().build();
+    public Response editarMarca(@BeanParam MarcaTO marca, @PathParam("id") String id){
+        return Response.ok(marcaService.editarMarca(mappingUtil.toToEntity(marcaTO, Marca.class))).build();
     }
 
-    @DELETE
-    @Path("/marcas/{id}")
-    @ApiOperation(value = "Retorna uma lista de marcas", notes = "Retorna uma lista de marcas")
-    @ApiResponses(value = {@ApiResponse(code = 200, message = "Um objeto JSON contendo uma lista de marcas.")})
+    @GET
+    @Path(ConstantsUtil.BUSCAR_MARCA_PATH)
     @Produces(MediaType.APPLICATION_JSON)
-    public Response deletarMarca(@PathParam("id") String id){
+    public Response buscarMarca(@BeanParam MarcaTO marca, @PathParam("id") String id){
+        return Response.ok(marcaService.buscarMarca(mappingUtil.toToEntity(marcaTO, Marca.class))).build();
+    }
+
+    @GET
+    @Path(ConstantsUtil.LISTAR_MARCA_PATH)
+    @Produces(MediaType.APPLICATION_JSON)
+    public Response listarMarca(){
+        return Response.ok(marcaService.listarMarca()).build();
+    }
+
+
+    @DELETE
+    @Path(ConstantsUtil.DELETAR_MARCA_PATH)
+    @Produces(MediaType.APPLICATION_JSON)
+    public Response deletarMarca(@BeanParam MarcaTO marca){
+        marcaService.deletarMarca(mappingUtil.toToEntity(marcaTO, Marca.class));
         return Response.ok().build();
     }
 
