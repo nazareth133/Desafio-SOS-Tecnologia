@@ -4,6 +4,7 @@ import lombok.Data;
 
 import javax.persistence.*;
 import java.io.Serializable;
+import java.util.Objects;
 
 @Entity
 @Table(name = "patrimonio")
@@ -76,5 +77,33 @@ public class Patrimonio implements Serializable {
 
     public void setDescricao(String descricao) {
         this.descricao = descricao;
+    }
+
+    @Override
+    public String toString() {
+        return "Patrimonio{" +
+                "id=" + id +
+                ", marcaId=" + marcaId +
+                ", numeroTombo=" + numeroTombo +
+                ", nome='" + nome + '\'' +
+                ", descricao='" + descricao + '\'' +
+                '}';
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Patrimonio that = (Patrimonio) o;
+        return Objects.equals(id, that.id) &&
+                Objects.equals(marcaId, that.marcaId) &&
+                Objects.equals(numeroTombo, that.numeroTombo) &&
+                Objects.equals(nome, that.nome) &&
+                Objects.equals(descricao, that.descricao);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id, marcaId, numeroTombo, nome, descricao);
     }
 }

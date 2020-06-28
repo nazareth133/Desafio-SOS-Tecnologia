@@ -7,61 +7,36 @@ import com.google.gson.Gson;
 import com.squareup.okhttp.HttpUrl;
 
 import javax.inject.Inject;
+import java.util.List;
+import java.util.Optional;
 
 public class PatrimonioService {
 
     @Inject
     private PatrimonioRepository patrimonioRepository;
 
-///    private final WebTarget webTarget;
-    //    private final Client client;
-//    private static final String BASE_URI = "http://localhost:8080";
-
-//    public PatrimonioClient() {
-//        client = ClientBuilder.newClient();
-//        webTarget = client.target(BASE_URI).path("/sos-tecnologia/api");
-//    }
-
-    public void criarPatrimonio(Patrimonio patrimonio) throws Exception{
-        patrimonioRepository.create(patrimonio);
+    public Patrimonio criarPatrimonio(Patrimonio patrimonio){
+        return patrimonioRepository.save(patrimonio);
     }
 
-//    public String countREST() throws ClientErrorException {
-//        WebTarget resource = webTarget;
-//        resource = resource.path("count");
-//        return resource.request(MediaType.TEXT_PLAIN).get(String.class);
-//    }
-//
-//    public void edit(Object requestEntity, String id) throws ClientErrorException {
-//        webTarget.path(MessageFormat.format("/patrimonios/{0}", new Object[]{id})).request(MediaType.APPLICATION_JSON).put(Entity.entity(requestEntity, MediaType.APPLICATION_JSON));
-//    }
-//
-//    public <T> T find(Class<T> responseType, String id) throws ClientErrorException {
-//        WebTarget resource = webTarget;
-//        resource = resource.path(MessageFormat.format("/patrimonios/{0}", new Object[]{id}));
-//        return resource.request(MediaType.APPLICATION_JSON).get(responseType);
-//    }
-//
-//    public <T> T findRange(Class<T> responseType, String from, String to) throws ClientErrorException {
-//        WebTarget resource = webTarget;
-//        resource = resource.path(MessageFormat.format("/patrimonios/{0}/{1}", new Object[]{from, to}));
-//        return resource.request(MediaType.APPLICATION_JSON).get(responseType);
-//    }
-//
-//    public void create(Object requestEntity) throws ClientErrorException {
-//        webTarget.request(MediaType.APPLICATION_JSON).post(Entity.entity(requestEntity, MediaType.APPLICATION_JSON));
-//    }
-//
-//    public <T> T findAll(Class<T> responseType) throws ClientErrorException {
-//        WebTarget resource = webTarget;
-//        return resource.request(MediaType.APPLICATION_JSON).get(responseType);
-//    }
-//
-//    public void remove(String id) throws ClientErrorException {
-//        webTarget.path(MessageFormat.format("/patrimonios/{0}", new Object[]{id})).request().delete();
-//    }
-//
-//    public void close() {
-//        client.close();
-//    }
+    public Patrimonio alterarPatrimonio(Patrimonio patrimonio){
+        return patrimonioRepository.update(patrimonio);
+    }
+
+    public void deletarPatrimonio(Patrimonio patrimonio){
+        patrimonioRepository.delete(patrimonio);
+    }
+
+    public Patrimonio buscarPatrimonio(Patrimonio patrimonio){
+        return patrimonioRepository.find(patrimonio.getId()).get();
+    }
+
+    public List<Patrimonio> listarPatrimonio(Patrimonio patrimonio){
+        return patrimonioRepository.findAll();
+    }
+
+    public Integer countPatrimonio(Patrimonio patrimonio){
+        return patrimonioRepository.count();
+    }
+
 }
