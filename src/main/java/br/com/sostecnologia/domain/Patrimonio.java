@@ -27,6 +27,17 @@ public class Patrimonio implements Serializable {
     @Column(name= "descricao")
     private String descricao;
 
+    public Patrimonio() {
+    }
+
+    public Patrimonio(Long id, Marca marcaId, Long numeroTombo, String nome, String descricao) {
+        this.id = id;
+        this.marcaId = marcaId;
+        this.numeroTombo = numeroTombo;
+        this.nome = nome;
+        this.descricao = descricao;
+    }
+
     public Long getId() {
         return id;
     }

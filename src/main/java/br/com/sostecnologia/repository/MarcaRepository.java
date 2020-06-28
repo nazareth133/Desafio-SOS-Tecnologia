@@ -8,7 +8,7 @@ import javax.persistence.PersistenceContext;
 
 public class MarcaRepository extends AbstractRepository<Marca> {
 
-    @PersistenceContext(unitName = "persistenceUnit")
+    //@PersistenceContext(unitName = "persistenceUnit")
     private EntityManager entityManager;
 
     public MarcaRepository(){

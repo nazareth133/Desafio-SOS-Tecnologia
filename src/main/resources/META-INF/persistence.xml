@@ -2,9 +2,9 @@
              xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
              xsi:schemaLocation="http://java.sun.com/xml/ns/persistence http://java.sun.com/xml/ns/persistence/persistence_2_0.xsd"
              version="2.0">
-    <persistence-unit name="persistenceUnit" transaction-type="RESOURCE_LOCAL">
+    <persistence-unit name="persistenceUnit" transaction-type="JTA">
         <provider>org.hibernate.ejb.HibernatePersistence</provider>
-        <non-jta-data-source>jdbc/sostecnologia</non-jta-data-source>
+        <jta-data-source>jdbc/sostecnologia</jta-data-source>
         <class>br.com.sostecnologia.domain.Patrimonio</class>
         <class>br.com.sostecnologia.domain.Marca</class>
         <properties>

@@ -1,9 +1,19 @@
 package br.com.sostecnologia.repository;
 
+import javax.annotation.Resource;
 import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
+import javax.transaction.Transactional;
+import javax.transaction.UserTransaction;
 import java.util.List;
 
 public abstract class AbstractRepository<T> {
+
+    @PersistenceContext(unitName = "persistenceUnit")
+    protected EntityManager entityManager;
+
+    @Resource
+    private UserTransaction userTransaction;
 
     private final Class<T> entityClass;
 
@@ -13,8 +23,10 @@ public abstract class AbstractRepository<T> {
 
     protected abstract EntityManager getEntityManager();
 
-    public void create(T entity) {
+    public void create(T entity) throws Exception{
+        userTransaction.begin();
         getEntityManager().persist(entity);
+        userTransaction.commit();
     }
 
     public void edit(T entity) {

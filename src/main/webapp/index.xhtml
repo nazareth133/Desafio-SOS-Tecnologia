@@ -12,9 +12,7 @@
             <fieldset>
                 <legend>Dados</legend>
                 <h:panelGrid columns="2">
-                    <h:outputLabel value="Titulo:" for="titulo" />
-                    <h:inputText id="titulo" value="#{patrimonio.nome}"/>
-                    <h:commandButton value="Gravar" action="#{patrimonioBean.findAll()}"/>
+                    <h:commandButton value="Gravar" action="#{patrimonioController.listarPatrimonios()}"/>
                 </h:panelGrid>
             </fieldset>
         </h:form>

@@ -1,0 +1,3 @@
+module add --name=org.postgresql --resources=src/main/resources/scripts/postgresql-42.2.11.jar --dependencies=javax.api,javax.transaction.api
+/subsystem=datasources/jdbc-driver=postgresql:add(driver-name=postgresql ,driver-module-name=org.postgresql,driver-xa-datasource-class-name=org.postgresql.xa.PGXADataSource)
+data-source add --jndi-name=java:/jdbc/sostecnologia --name=sostecnologiaDS --connection-url=jdbc:postgresql://localhost:5432/sostecnologia --driver-name=postgresql --password=postgres --user-name=postgres
