@@ -1,0 +1,73 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml" xmlns:ui="http://java.sun.com/jsf/facelets"
+    xmlns:p="http://primefaces.org/ui" xmlns:f="http://xmlns.jcp.org/jsf/core" xmlns:h="http://xmlns.jcp.org/jsf/html"
+    template="#{layoutMB.layout}">
+
+    <ui:define name="head-end">
+        <ui:param name="renderBreadCrumb" value="false" />
+    </ui:define>
+
+
+    <ui:define name="title">
+        <div class="align-center">
+            <p:graphicImage library="images" name="sos-docs-300x175.png" />
+        </div>
+        <p:growl autoUpdate="true" life="4000" />
+
+        <h2 class="align-center">
+            <span class="text-aqua"> <a target="_blank">Gerenciador de Marcas</a></span>
+            <br />
+        </h2>
+    </ui:define>
+
+
+    <ui:define name="body">
+
+
+        <h:form id="form"><br /><br /><br />
+            <p:panel header="Dados do patrimônio">
+
+                <p:panelGrid columns="1" layout="grid" styleClass="ui-fluid">
+
+                    <p:panelGrid columns="4" columnClasses="ui-grid-col-2,ui-grid-col-4,ui-grid-col-2,ui-grid-col-4"
+                        layout="grid" styleClass="ui-fluid">
+                        <p:outputLabel for="nome" value="Nome da Marca" />
+                        <p:inputText id="nome" value="#{basicView.text}" />
+                        <p:button value="Gravar" url="#" update="form" icon="fa fa-floppy-o" />
+                    </p:panelGrid>
+
+                    <p:dataTable var="car" value="#{datatableMB.cars}" reflow="true" style="margin-top:60px"
+                        paginator="true" paginatorPosition="bottom" rows="5">
+                        <f:facet name="header">
+                            Marcas Cadastradas
+                        </f:facet>
+                        <p:column headerText="Id">
+                            <h:outputText value="#{car.id}" />
+                        </p:column>
+
+                        <p:column headerText="Marca">
+                            <h:outputText value="#{car.year}" />
+                        </p:column>
+
+                        <p:column headerText="Editar" width="120">
+
+                            <p:button value="Editar" url="#" update="form" icon="fa fa-edit" />
+
+                        </p:column>
+                        <p:column headerText="Excluir" width="120">
+
+                            <p:button value="Excluir" url="#" update="form" icon="fa fa-times" />
+                        </p:column>
+                    </p:dataTable>
+
+                </p:panelGrid><br /><br /><br />
+
+
+
+
+
+            </p:panel><br />
+
+        </h:form>
+
+    </ui:define>
+</ui:composition>

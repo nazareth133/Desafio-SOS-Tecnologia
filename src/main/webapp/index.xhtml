@@ -1,69 +1,64 @@
-<ui:composition xmlns="http://www.w3.org/1999/xhtml"
-                xmlns:ui="http://java.sun.com/jsf/facelets"
-                xmlns:p="http://primefaces.org/ui"
-                template="#{layoutMB.layout}">
-  
+<ui:composition xmlns="http://www.w3.org/1999/xhtml" xmlns:ui="http://java.sun.com/jsf/facelets"
+    xmlns:p="http://primefaces.org/ui" xmlns:f="http://xmlns.jcp.org/jsf/core" xmlns:h="http://xmlns.jcp.org/jsf/html"
+    template="#{layoutMB.layout}">
+
     <ui:define name="head-end">
-        <ui:param name="renderBreadCrumb" value="false"/>
+        <ui:param name="renderBreadCrumb" value="false" />
     </ui:define>
-    
+
 
     <ui:define name="title">
-        <p:growl autoUpdate="true" life="4000"/>
+        <div class="align-center">
+            <p:graphicImage library="images" name="sos-docs-300x175.png" />
+        </div>
+        <p:growl autoUpdate="true" life="4000" />
 
         <h2 class="align-center">
-            Welcome to the <span class="text-aqua"> <i><a href="https://github.com/adminfaces/" target="_blank"
-                                                          style="text-transform: none;text-decoration: none"> AdminFaces</a></i></span> Showcase!
-            <br/>
-            <small>Integrating <p:link value="Primefaces" href="http://primefaces.org"/>, <p:link value="Bootstrap"
-                                                                                                  href="http://getbootstrap.com/"/> and
-                <p:link value="Admin LTE" href="https://almsaeedstudio.com/themes/AdminLTE/index2.html/"/> into your
-                <p:link value="JSF" href="https://javaserverfaces.java.net/"/> application.
-            </small>
+            <span class="text-aqua"> <a target="_blank">Gerenciador de Patrimônio</a></span>
+            <br />
         </h2>
     </ui:define>
 
 
     <ui:define name="body">
-        <div class="box box-primary" style="font-family: 'Helvetica Neue';font-size: 15px">
-            <div class="box-header with-border">
-                <b>AdminFaces</b> is composed by the following projects:
-            </div>
-            <div class="box-body">
-                <ul>
-                    <li>
-                        <p:link value="Admin Theme" href="https://github.com/adminfaces/admin-theme"/>: Is a <i><p:link
-                            value="Primefaces theme" href="http://primefaces.org/themes"/> </i> based on <p:link
-                            value="Bootstrap" href="http://getbootstrap.com"/> and <p:link value=" Admin LTE"
-                                                                                           href="https://almsaeedstudio.com/themes/AdminLTE/index2.html"/> where Primefaces components are customized to look like mentioned frameworks.
-                    </li>
-                    <li>
-                        <p:link value="Admin Template" href="https://github.com/adminfaces/admin-template"/>: It's a
-                        <b>fully responsive</b> <i> <p:link value="Java Server Faces"
-                                                            href="https://javaserverfaces.java.net/"/> </i>
-                        <code>admin</code> template (used by this Showcase) which is also based on <b>Bootstrap</b> and
-                        <b>Admin LTE</b>.
-                    </li>
-                    <li>
-                        <p:link value="Admin Showcase"
-                                href="https://github.com/adminfaces/admin-showcase"/>: This web application which demonstrates AdminFaces main features and components.
-                    </li>
-                    <li>
-                        <p:link value="Admin Designer"
-                                href="https://github.com/adminfaces/admin-designer"/>: It's the same showcase application with Admin Theme and Admin Template bundled (instead of being library dependencies) in order to make it easier to customize the theme and the template.
-                    </li>
-                    <li>
-                        <p:link value="Admin Starter"
-                                href="https://github.com/adminfaces/admin-starter"/>: A simple starter project to get you started with AdminFaces.
-                    </li>
-                     <li>
-                        <p:link value="Admin Mobile"
-                                href="https://github.com/adminfaces/admin-mobile"/>: Admin showcase mobile application using Android webview.
-                    </li>
-                </ul>
-            </div>
-        </div>
 
-        <ui:include src="pages/dashboard/dashboard.xhtml"/>
+
+        <h:form id="form"><br /><br /><br />
+            <p:panel header="Dados do patrimônio">
+
+                <p:panelGrid columns="4" columnClasses="ui-grid-col-2,ui-grid-col-4,ui-grid-col-2,ui-grid-col-4"
+                    layout="grid" styleClass="ui-fluid">
+
+
+                    <p:outputLabel for="nome" value="Nome" />
+                    <p:inputText id="nome" value="#{basicView.text}" />
+
+
+                    <p:outputLabel for="marca" value="MarcaId" />
+                    <p:inputNumber id="marca" value="#{inputNumberView.input2}" decimalPlaces="8" padControl="true" />
+
+
+                    <p:outputLabel for="descrição" value="Descrição" />
+                    <p:inputTextarea id="descrição" rows="3" cols="21" />
+
+
+                    <p:outputLabel for="tombo" value="N° do tombo" />
+                    <p:inputText id="tombo" disabled="true" />
+
+
+                </p:panelGrid><br /><br /><br />
+
+
+                <p:button value="Gravar" url="#" update="form" icon="fa fa-floppy-o" />
+                <p:button value="Atualizar" url="#" update="form" icon="fa fa-refresh" />
+                <p:button value="Visualizar" url="#" update="form" icon="fa fa-refresh" />
+                <p:button value="Excluir" url="#" update="form" icon="fa fa-times" />
+                <p:button value="Limpar" action="#{menuView.update}" update="form" icon="fa fa-reply" />
+
+
+            </p:panel><br />
+
+        </h:form>
+
     </ui:define>
 </ui:composition>
