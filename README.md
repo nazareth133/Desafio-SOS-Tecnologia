@@ -14,5 +14,5 @@
 ```sh
 $ mvn clean package wildfly:run
 ```
-O banco deve conter os usuarios e senhas "postgres" e ter a database "sostecnologia", as entidades serão geradas pelo Hibernate automaticamente,
+O banco de dados deve conter os usuarios e senhas "postgres" e a database "sostecnologia", as entidades serão geradas pelo Hibernate automaticamente,
 de acordo com as anotações e validações implementadas.
