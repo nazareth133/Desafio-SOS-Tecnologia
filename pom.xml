@@ -19,6 +19,69 @@
 
   <dependencies>
     <dependency>
+        <groupId>org.primefaces</groupId>
+        <artifactId>primefaces</artifactId>
+        <version>6.1</version>
+    </dependency>
+
+    <dependency>
+        <groupId>org.primefaces.extensions</groupId>
+        <artifactId>primefaces-extensions</artifactId>
+        <version>6.0.0</version>
+    </dependency>
+
+    <dependency>
+        <groupId>org.omnifaces</groupId>
+        <artifactId>omnifaces</artifactId>
+        <version>2.1</version>
+    </dependency>
+
+    <dependency>
+        <groupId>com.github.adminfaces</groupId>
+        <artifactId>admin-template</artifactId>
+        <version>1.0.0-RC7</version>
+        <exclusions>
+            <exclusion>
+                <groupId>com.github.adminfaces</groupId>
+                <artifactId>admin-theme</artifactId>
+            </exclusion>
+        </exclusions>
+    </dependency>
+
+    <dependency>
+        <groupId>com.github.adminfaces</groupId>
+        <artifactId>admin-theme</artifactId>
+        <version>1.0.0-RC7</version>
+        <classifier>no-cache</classifier>
+    </dependency>
+    <dependency>
+        <groupId>org.slf4j</groupId>
+        <artifactId>slf4j-api</artifactId>
+        <version>1.7.22</version>
+    </dependency>
+
+    <dependency>
+        <groupId>javax.json</groupId>
+        <artifactId>javax.json-api</artifactId>
+        <version>1.0</version>
+    </dependency>
+    <dependency>
+        <groupId>org.glassfish</groupId>
+        <artifactId>javax.json</artifactId>
+        <version>1.0.4</version>
+    </dependency>
+    <dependency>
+        <groupId>commons-io</groupId>
+        <artifactId>commons-io</artifactId>
+        <version>2.5</version>
+    </dependency>
+    <dependency>
+        <groupId>net.bull.javamelody</groupId>
+        <artifactId>javamelody-core</artifactId>
+        <version>1.59.0</version>
+    </dependency>
+    
+    <dependency>
       <groupId>org.modelmapper</groupId>
       <artifactId>modelmapper</artifactId>
       <version>2.3.5</version>
@@ -58,11 +121,6 @@
       <groupId>javax.enterprise</groupId>
       <artifactId>cdi-api</artifactId>
       <version>2.0</version>
-    </dependency>
-    <dependency>
-      <groupId>org.primefaces</groupId>
-      <artifactId>primefaces</artifactId>
-      <version>8.0</version>
     </dependency>
   </dependencies>
 
