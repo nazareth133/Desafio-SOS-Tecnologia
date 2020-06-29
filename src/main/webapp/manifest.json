@@ -1,24 +1,24 @@
 {
     "short_name": "SOS DOCS",
-    "name": "AdminFaces Showcase Application",
+    "name": "SOS DOCS",
     "icons": [
         {
-            "src": "/resources/images/android-chrome-192x192.png",
+            "src": "/resources/images/sos-docs-300x175.png",
             "sizes": "96x96",
             "type": "image/png"
         },
         {
-            "src": "/resources/images/android-chrome-144x144.png",
+            "src": "/resources/images/sos-docs-300x175.png",
             "sizes": "144x144",
             "type": "image/png"
         },
         {
-            "src": "/resources/images/android-chrome-192x192.png",
+            "src": "/resources/images/sos-docs-300x175.png",
             "sizes": "192x192",
             "type": "image/png"
         },
         {
-            "src": "/resources/images/android-chrome-512x512.png",
+            "src": "/resources/images/sos-docs-300x175.png",
             "sizes": "512x512",
             "type": "image/png"
         }

@@ -31,19 +31,19 @@
 
 
                     <p:outputLabel for="nome" value="Nome" />
-                    <p:inputText id="nome" value="#{basicView.text}" />
+                    <p:inputText id="nome" value="#{patrimonio.nome}" />
 
 
                     <p:outputLabel for="marca" value="MarcaId" />
-                    <p:inputNumber id="marca" value="#{inputNumberView.input2}" decimalPlaces="8" padControl="true" />
+                    <p:inputNumber id="marca" value="#{patrimonio.marcaId.id}" decimalPlaces="8" padControl="true" />
 
 
                     <p:outputLabel for="descrição" value="Descrição" />
-                    <p:inputTextarea id="descrição" rows="3" cols="21" />
+                    <p:inputTextarea id="descrição" value="#{patrimonio.descricao}" rows="3" cols="21" />
 
 
                     <p:outputLabel for="tombo" value="N° do tombo" />
-                    <p:inputText id="tombo" disabled="true" />
+                    <p:inputText id="tombo" value="#{patrimonio.numeroTombo}" disabled="true" />
 
 
                 </p:panelGrid><br /><br /><br />
