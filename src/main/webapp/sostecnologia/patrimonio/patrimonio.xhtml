@@ -48,13 +48,13 @@
                                  layout="grid" styleClass="ui-fluid">
                     </p:panelGrid><br /><br /><br />
 
-                    <p:button value="Gravar" icon="fa fa-floppy-o" href="/sostecnologia/patrimonio/criarPatrimonio.xhtml"></p:button>
+                    <p:button value="Inserir" icon="fa fa-floppy-o" href="/sostecnologia/patrimonio/criarPatrimonio.xhtml"></p:button>
                     <p:button value="Editar" icon="fa fa-pencil" href="/sostecnologia/patrimonio/editarPatrimonio.xhtml" onclick="#{patrimonioController.setSelectecPatrimonio(patrimonio.get(0))}"></p:button>
                     <p:commandButton value="Excluir" url="#" update="@none" process="@this" icon="fa fa-times" >
                         <f:ajax event="click" listener="#{patrimonioController.deletarPatrimonio(patrimonioController.selectedPatrimonio)}" execute="patrimonio"/>
-                    </p:commandButton>
+                    </p:commandButton><br />
                     <h:form enctype="multipart/form-data">
-                        <p:fileUpload value="#{fileUploadView.file}"  label="Escolha o arquivo" mode="simple" skinSimple="true"/>
+                        <p:fileUpload value="#{fileUploadView.file}"  label="UploadPdf" mode="simple" skinSimple="true"/>
                         <p:commandButton value="Download" ajax="false" action="#{fileUploadView.upload}" disabled="true" />
                     </h:form>
             </p:panel><br />
