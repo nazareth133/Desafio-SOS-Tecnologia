@@ -31,21 +31,23 @@
                     <p:panelGrid columns="4" columnClasses="ui-grid-col-2,ui-grid-col-4,ui-grid-col-2,ui-grid-col-4"
                         layout="grid" styleClass="ui-fluid">
                         <p:outputLabel for="nome" value="Nome da Marca" />
-                        <p:inputText id="nome" value="#{basicView.text}" />
-                        <p:button value="Gravar" url="#" update="form" icon="fa fa-floppy-o" />
+                        <p:inputText id="nome" value="#{marcaController.marcaTo.nome}" />
+                        <p:commandButton value="Gravar" url="#" update="@none" process="@this" icon="fa fa-floppy-o" >
+                            <f:ajax event="click" listener="#{marcaController.criarMarca(marcaController.marcaTo)}" execute="formulario"/>
+                        </p:commandButton>
                     </p:panelGrid>
 
-                    <p:dataTable var="car" value="#{datatableMB.cars}" reflow="true" style="margin-top:60px"
+                    <p:dataTable var="car" update="form" value="#{marcaController.listarMarca()}" reflow="true" style="margin-top:60px"
                         paginator="true" paginatorPosition="bottom" rows="5">
                         <f:facet name="header">
                             Marcas Cadastradas
                         </f:facet>
                         <p:column headerText="Id">
-                            <h:outputText value="#{car.id}" />
+                            <h:outputText value="#{marcaController.marcaTo.id}" />
                         </p:column>
 
                         <p:column headerText="Marca">
-                            <h:outputText value="#{car.year}" />
+                            <h:outputText value="#{marcaController.marcaTo.nome}" />
                         </p:column>
 
                         <p:column headerText="Editar" width="120">
