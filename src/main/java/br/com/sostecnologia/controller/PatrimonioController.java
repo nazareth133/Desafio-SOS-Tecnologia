@@ -10,7 +10,6 @@ import br.com.sostecnologia.util.MappingUtil;
 import org.apache.log4j.Logger;
 
 import javax.enterprise.context.ApplicationScoped;
-import javax.faces.view.ViewScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
 import javax.ws.rs.*;
@@ -28,7 +27,6 @@ public class PatrimonioController extends AbstractController {
     @Inject
     private PatrimonioService patrimonioService;
 
-    @Inject
     private PatrimonioTO patrimonioTO;
 
     @Inject
@@ -38,7 +36,10 @@ public class PatrimonioController extends AbstractController {
     @Path(ConstantsUtil.CRIAR_PATRIMONIO_PATH)
     @Produces(MediaType.APPLICATION_JSON)
     public Response criarPatrimonio(@BeanParam PatrimonioTO patrimonioTO){
-        return Response.ok(patrimonioService.criarPatrimonio(mappingUtil.toToEntity(patrimonioTO, Patrimonio.class))).build();
+        Patrimonio patrimonio = mappingUtil.toToEntity(patrimonioTO, Patrimonio.class);
+        this.patrimonioTO = new PatrimonioTO();
+        this.patrimonioTO.setMarcaId(new Marca());
+        return Response.ok(patrimonioService.criarPatrimonio(patrimonio)).build();
     }
 
     @PUT
@@ -70,6 +71,18 @@ public class PatrimonioController extends AbstractController {
     public Response deletarPatrimonio(@BeanParam PatrimonioTO patrimonio){
         patrimonioService.deletarPatrimonio(mappingUtil.toToEntity(patrimonioTO, Patrimonio.class));
         return Response.ok().build();
+    }
+
+    public PatrimonioTO getPatrimonioTO() {
+        if (patrimonioTO == null ) {
+            patrimonioTO = new PatrimonioTO();
+            patrimonioTO.setMarcaId(new Marca());
+        }
+        return patrimonioTO;
+    }
+
+    public void setPatrimonioTO(PatrimonioTO contratoTO) {
+        this.patrimonioTO = patrimonioTO;
     }
 
 }

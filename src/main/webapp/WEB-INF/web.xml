@@ -70,6 +70,11 @@
       <dispatcher>ERROR</dispatcher>
   </filter-mapping>
 
+    <context-param>
+        <param-name>javax.faces.PARTIAL_STATE_SAVING</param-name>
+        <param-value>false</param-value>
+    </context-param>
+
   <context-param>
       <param-name>primefaces.FONT_AWESOME</param-name>
       <param-value>true</param-value>

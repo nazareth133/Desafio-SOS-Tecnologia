@@ -2,6 +2,8 @@ package br.com.sostecnologia.repository;
 
 import org.apache.log4j.Logger;
 import javax.annotation.Resource;
+import javax.faces.application.FacesMessage;
+import javax.faces.context.FacesContext;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
@@ -33,8 +35,10 @@ public abstract class AbstractRepository<T> implements CustomHibernateSession<T>
             userTransaction.begin();
             entityManager.persist(entity);
             userTransaction.commit();
+            FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "", "Registro salvo com sucesso!"));
             return entity;
         }catch (Exception exception){
+            FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_WARN, "", "Ocorreu um error ao persistir os dados!"));
             logger.error(exception.getMessage(), exception);
         }
         return null;

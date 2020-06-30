@@ -23,37 +23,37 @@
     <ui:define name="body">
 
 
-        <h:form id="form"><br /><br /><br />
-            <p:panel header="Dados do patrimônio">
+        <h:form id="formulario"><br /><br /><br />
+            <p:autoUpdate />
+            <p:panel id="panel" header="Dados do patrimônio">
 
                 <p:panelGrid columns="4" columnClasses="ui-grid-col-2,ui-grid-col-4,ui-grid-col-2,ui-grid-col-4"
                     layout="grid" styleClass="ui-fluid">
 
-
                     <p:outputLabel for="nome" value="Nome" />
-                    <p:inputText id="nome" value="#{patrimonio.nome}" />
-
+                    <p:inputText id="nome" value="#{patrimonioController.patrimonioTO.nome}"/>
 
                     <p:outputLabel for="marca" value="MarcaId" />
-                    <p:inputNumber id="marca" value="#{patrimonio.marcaId.id}" decimalPlaces="8" padControl="true" />
-
+                    <p:inputText id="marca" value="#{patrimonioController.patrimonioTO.marcaId.nome}" padControl="true"/>
 
                     <p:outputLabel for="descrição" value="Descrição" />
-                    <p:inputTextarea id="descrição" value="#{patrimonio.descricao}" rows="3" cols="21" />
-
+                    <p:inputTextarea id="descrição" value="#{patrimonioController.patrimonioTO.descricao}" rows="3" cols="21" />
 
                     <p:outputLabel for="tombo" value="N° do tombo" />
-                    <p:inputText id="tombo" value="#{patrimonio.numeroTombo}" disabled="true" />
-
+                    <p:inputText id="tombo" value="#{patrimonioController.patrimonioTO.numeroTombo}" disabled="true" />
 
                 </p:panelGrid><br /><br /><br />
 
-
-                <p:button value="Gravar" url="#" update="form" icon="fa fa-floppy-o" />
+                <p:commandButton value="Gravar" url="#" update="@none" process="@this" icon="fa fa-floppy-o" >
+                    <f:ajax event="click" listener="#{patrimonioController.criarPatrimonio(patrimonioController.patrimonioTO)}" execute="formulario"/>
+                </p:commandButton>
                 <p:button value="Atualizar" url="#" update="form" icon="fa fa-refresh" />
                 <p:button value="Visualizar" url="#" update="form" icon="fa fa-refresh" />
                 <p:button value="Excluir" url="#" update="form" icon="fa fa-times" />
-                <p:button value="Limpar" action="#{menuView.update}" update="form" icon="fa fa-reply" />
+                <p:commandButton value="Limpar" icon="fa fa-reply">
+                    <p:ajax update="panel" resetValues="true" />
+                </p:commandButton>
+
 
 
             </p:panel><br />
@@ -61,4 +61,11 @@
         </h:form>
 
     </ui:define>
+
+    <script type="text/javascript">
+        //<![CDATA[
+        function scriptTeste() {}
+        //]]>
+    </script>
+
 </ui:composition>
