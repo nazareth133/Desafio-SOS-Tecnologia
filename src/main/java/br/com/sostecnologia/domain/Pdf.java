@@ -23,16 +23,15 @@ public class Pdf implements Serializable {
     private Long id;
 
     @Column(name= "conteudo")
-    private ByteArray conteudo;
+    private Byte[] conteudo;
 
 
     public Pdf() {
     }
 
-    public Pdf(Long id, ByteArray conteudo) {
+    public Pdf(Long id, Byte[] conteudo) {
         this.id = id;
         this.conteudo = conteudo;
-       
     }
 
     public Long getId() {
@@ -43,14 +42,13 @@ public class Pdf implements Serializable {
         this.id = id;
     }
 
-    public ByteArray getConteudo() {
+    public Byte[] getConteudo() {
         return conteudo;
     }
 
-    public void setConteudo(ByteArray conteudo) {
+    public void setConteudo(Byte[] conteudo) {
         this.conteudo = conteudo;
     }
-
 
     @Override
     public String toString() {

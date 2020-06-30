@@ -10,30 +10,27 @@ import javax.xml.bind.annotation.XmlRootElement;
 public class PdfTO {
 
     private Long id;
-    private ByteArray conteudo;
+    private Byte[] conteudo;
 
     public PdfTO() {
     }
 
-    public PdfTO(Long id, ByteArray conteudo) {
+    public PdfTO(Long id, Byte[] conteudo) {
         this.id = id;
         this.conteudo = conteudo;
- 
     }
 
     public void setId(Long id) {
         this.id = id;
     }
 
-    public Marca getConteudo() {
+    public Byte[] getConteudo() {
         return conteudo;
     }
 
-    public void setConteudo(ByteArray conteudo) {
+    public void setConteudo(Byte[] conteudo) {
         this.conteudo = conteudo;
     }
-
-   
 
     public Long getId() {
         return id;
