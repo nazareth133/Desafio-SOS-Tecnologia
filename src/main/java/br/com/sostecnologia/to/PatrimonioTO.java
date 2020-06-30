@@ -65,4 +65,14 @@ public class PatrimonioTO {
         return id;
     }
 
+    @Override
+    public String toString() {
+        return "PatrimonioTO{" +
+                "id=" + id +
+                ", marcaId=" + marcaId +
+                ", numeroTombo=" + numeroTombo +
+                ", nome='" + nome + '\'' +
+                ", descricao='" + descricao + '\'' +
+                '}';
+    }
 }

@@ -4,12 +4,13 @@ import lombok.Data;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
+import java.io.Serializable;
 import java.util.Objects;
 
 @Data
 @Entity
 @Table(name = "marca")
-public class Marca {
+public class Marca implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)

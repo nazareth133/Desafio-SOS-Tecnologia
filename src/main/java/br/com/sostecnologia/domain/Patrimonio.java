@@ -17,12 +17,10 @@ public class Patrimonio implements Serializable {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
-    @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "marcaId", nullable = false)
     private Marca marcaId;
 
-    @GeneratedValue(generator = "uuid2")
-    @GenericGenerator(name = "uuid2", strategy = "uuid2")
     @Column(name= "numeroTombo")
     private String numeroTombo;
 
@@ -73,6 +71,14 @@ public class Patrimonio implements Serializable {
 
     public void setDescricao(String descricao) {
         this.descricao = descricao;
+    }
+
+    public String getNumeroTombo() {
+        return numeroTombo;
+    }
+
+    public void setNumeroTombo(String numeroTombo) {
+        this.numeroTombo = numeroTombo;
     }
 
     @Override

@@ -33,4 +33,11 @@ public class MarcaTO {
         this.nome = nome;
     }
 
+    @Override
+    public String toString() {
+        return "MarcaTO{" +
+                "id=" + id +
+                ", nome='" + nome + '\'' +
+                '}';
+    }
 }

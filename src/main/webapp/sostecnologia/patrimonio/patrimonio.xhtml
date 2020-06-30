@@ -1,0 +1,67 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml" xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:p="http://primefaces.org/ui" xmlns:f="http://xmlns.jcp.org/jsf/core" xmlns:h="http://xmlns.jcp.org/jsf/html"
+                template="#{layoutMB.layout}">
+
+    <ui:define name="head-end">
+        <ui:param name="renderBreadCrumb" value="false" />
+    </ui:define>
+
+
+    <ui:define name="title">
+        <div class="align-center">
+            <p:graphicImage library="images" name="sos-docs-300x175.png" />
+        </div>
+        <p:growl autoUpdate="true" life="4000" />
+
+        <h2 class="align-center">
+            <span class="text-aqua"> <a target="_blank">Gerenciador de Patrimônio</a></span>
+            <br />
+        </h2>
+    </ui:define>
+
+
+    <ui:define name="body">
+
+        <h:form id="formulario1"><br /><br /><br />
+            <p:autoUpdate />
+            <p:panel id="panel" header="Dados do patrimônio">
+                <div id="datatable">
+                    <p:dataTable var="patrimonio" value="#{patrimonioController.listarPatrimonio()}" paginator="true" selection="#{patrimonioController.selectedPatrimonio}"
+                                 paginatorTemplate="{CurrentPageReport} {PreviousPageLink} {PageLinks} {NextPageLink}" rows="10" rowKey="#{patrimonio.id}"
+                                 emptyMessage="Não existem patrimônios cadastrados !">
+                        <p:column width="5%" selectionMode="single" styleClass="align-center" priority="1"/>
+                        <p:column headerText="Nome">
+                            <h:outputText value="#{patrimonio.nome}"/>
+                        </p:column>
+                        <p:column headerText="Descrição">
+                            <h:outputText value="#{patrimonio.descricao}"/>
+                        </p:column>
+                        <p:column headerText="Nome">
+                            <h:outputText value="#{patrimonio.numeroTombo}"/>
+                        </p:column>
+                        <p:column headerText="Nome da Marca">
+                            <h:outputText value="#{patrimonio.marcaId.nome}"/>
+                        </p:column>
+                    </p:dataTable>
+                </div>
+                    <p:panelGrid columns="4" columnClasses="ui-grid-col-2,ui-grid-col-4,ui-grid-col-2,ui-grid-col-4"
+                                 layout="grid" styleClass="ui-fluid">
+                    </p:panelGrid><br /><br /><br />
+
+                    <p:button value="Gravar" icon="fa fa-floppy-o" href="/sostecnologia/patrimonio/criarPatrimonio.xhtml"></p:button>
+                    <p:button value="Editar" icon="fa fa-pencil" href="/sostecnologia/patrimonio/editarPatrimonio.xhtml" onclick="#{patrimonioController.setSelectecPatrimonio(null)}"></p:button>
+                    <p:commandButton value="Excluir" url="#" update="@none" process="@this" icon="fa fa-times" >
+                        <f:ajax event="click" listener="#{patrimonioController.deletarPatrimonio(patrimonioController.selectedPatrimonio)}" execute="formulario"/>
+                    </p:commandButton>
+            </p:panel><br />
+
+        </h:form>
+    </ui:define>
+
+    <script type="text/javascript">
+        //<![CDATA[
+        function scriptTeste() {}
+        //]]>
+    </script>
+
+</ui:composition>

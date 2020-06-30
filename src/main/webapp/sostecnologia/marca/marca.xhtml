@@ -1,6 +1,6 @@
 <ui:composition xmlns="http://www.w3.org/1999/xhtml" xmlns:ui="http://java.sun.com/jsf/facelets"
-    xmlns:p="http://primefaces.org/ui" xmlns:f="http://xmlns.jcp.org/jsf/core" xmlns:h="http://xmlns.jcp.org/jsf/html"
-    template="#{layoutMB.layout}">
+                xmlns:p="http://primefaces.org/ui" xmlns:f="http://xmlns.jcp.org/jsf/core" xmlns:h="http://xmlns.jcp.org/jsf/html"
+                template="#{layoutMB.layout}">
 
     <ui:define name="head-end">
         <ui:param name="renderBreadCrumb" value="false" />
@@ -29,7 +29,7 @@
                 <p:panelGrid columns="1" layout="grid" styleClass="ui-fluid">
 
                     <p:panelGrid columns="4" columnClasses="ui-grid-col-2,ui-grid-col-4,ui-grid-col-2,ui-grid-col-4"
-                        layout="grid" styleClass="ui-fluid">
+                                 layout="grid" styleClass="ui-fluid">
                         <p:outputLabel for="nome" value="Nome da Marca" />
                         <p:inputText id="nome" value="#{marcaController.marcaTO.nome}" />
                         <p:commandButton value="Gravar" url="#" update="@none" process="@this" icon="fa fa-floppy-o" >
@@ -38,7 +38,7 @@
                     </p:panelGrid>
 
                     <p:dataTable var="car" update="form" value="#{marcaController.listarMarca()}" reflow="true" style="margin-top:60px"
-                        paginator="true" paginatorPosition="bottom" rows="5">
+                                 paginator="true" paginatorPosition="bottom" rows="5">
                         <f:facet name="header">
                             Marcas Cadastradas
                         </f:facet>

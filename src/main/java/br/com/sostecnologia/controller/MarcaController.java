@@ -25,7 +25,6 @@ public class MarcaController extends AbstractController {
     @Inject
     private MarcaService marcaService;
 
-    @Inject
     private MarcaTO marcaTO;
 
     @Inject
@@ -68,4 +67,14 @@ public class MarcaController extends AbstractController {
         return Response.ok().build();
     }
 
+    public MarcaTO getMarcaTO(){
+        if (marcaTO == null ) {
+            marcaTO = new MarcaTO();
+        }
+        return marcaTO;
+    }
+
+    public void setMarcaTO(MarcaTO marcaTO){
+        this.marcaTO = marcaTO;
+    }
 }
