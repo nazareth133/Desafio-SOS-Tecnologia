@@ -47,11 +47,17 @@ public abstract class AbstractRepository<T> implements CustomHibernateSession<T>
     public T update(T entity) {
         try{
             userTransaction.begin();
-            entityManager.merge(entity);
-            entityManager.persist(entity);
+            if(entityManager.contains(entity)){
+                this.delete(entity);
+                entityManager.persist(entity);
+            }else{
+                entityManager.merge(entity);
+            }
+            FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "", "Registro alterado com sucesso!"));
             userTransaction.commit();
             return entity;
         }catch(Exception exception){
+            FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_WARN, "", "Ocorreu um error ao persistir os dados!"));
             logger.error(exception.getMessage(), exception);
         }
         return null;
@@ -62,7 +68,9 @@ public abstract class AbstractRepository<T> implements CustomHibernateSession<T>
             userTransaction.begin();
             entityManager.remove(entityManager.contains(entity) ? entity : entityManager.merge(entity));
             userTransaction.commit();
+            FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "", "Registro excluido com sucesso!"));
         }catch(Exception exception){
+            FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_WARN, "", "Ocorreu um error ao persistir os dados!"));
             logger.error(exception.getMessage(), exception);
         }
     }

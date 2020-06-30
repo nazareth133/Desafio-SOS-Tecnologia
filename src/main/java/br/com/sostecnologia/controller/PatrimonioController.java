@@ -11,7 +11,9 @@ import com.google.gson.Gson;
 import org.apache.log4j.Logger;
 import org.omnifaces.util.Faces;
 
+import javax.annotation.PostConstruct;
 import javax.enterprise.context.ApplicationScoped;
+import javax.faces.context.FacesContext;
 import javax.inject.Inject;
 import javax.inject.Named;
 import javax.ws.rs.*;
@@ -19,7 +21,7 @@ import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 import java.util.List;
 
-
+//TODO alterar as entradas dos endpoints para BYTE[]
 @ApplicationScoped
 @Named(value = "patrimonioController")
 @Path("/api/sos-tecnologia")
@@ -41,7 +43,6 @@ public class PatrimonioController extends AbstractController {
     @Path(ConstantsUtil.CRIAR_PATRIMONIO_PATH)
     @Produces(MediaType.APPLICATION_JSON)
     public Response criarPatrimonio(@BeanParam PatrimonioTO patrimonioTO){
-        logger.info(patrimonioTO);
         Patrimonio patrimonio = mappingUtil.toToEntity(patrimonioTO, Patrimonio.class);
         this.patrimonioTO = new PatrimonioTO();
         this.patrimonioTO.setNumeroTombo(Math.abs(Math.round(Math.random()*((1-10000)+1))+1));
@@ -53,7 +54,6 @@ public class PatrimonioController extends AbstractController {
     @Path(ConstantsUtil.EDITAR_PATRIMONIO_PATH)
     @Produces(MediaType.APPLICATION_JSON)
     public Response editarPatrimonio(@BeanParam Patrimonio patrimonio, @PathParam("id") String id){
-        logger.info(selectedPatrimonio);
         return Response.ok(patrimonioService.editarPatrimonio(patrimonio)).build();
     }
 
@@ -70,28 +70,17 @@ public class PatrimonioController extends AbstractController {
     @Produces(MediaType.APPLICATION_JSON)
     public List<Patrimonio> listarPatrimonio(){
         List<Patrimonio> listaPatrimonio = patrimonioService.listarPatrimonio();
-        logger.info(listaPatrimonio);
         return listaPatrimonio;
     }
-
 
     @DELETE
     @Path(ConstantsUtil.DELETAR_PATRIMONIO_PATH)
     @Produces(MediaType.APPLICATION_JSON)
     public Response deletarPatrimonio(@BeanParam Patrimonio patrimonio){
-        logger.info(patrimonio);
         patrimonioService.deletarPatrimonio(patrimonio);
         return Response.ok().build();
     }
 
-    @DELETE
-    @Path("teste/{id}")
-    @Produces(MediaType.APPLICATION_JSON)
-    public Response teste(byte[] patrimonio, @PathParam("id") String id){
-        logger.info(new String(patrimonio) + "id:" + id);
-        patrimonioService.deletarPatrimonio(mappingUtil.toToEntity(new Gson().fromJson(new String(patrimonio), PatrimonioTO.class), Patrimonio.class));
-        return Response.ok().build();
-    }
 
     public PatrimonioTO getPatrimonioTO() {
         if (patrimonioTO == null ) {

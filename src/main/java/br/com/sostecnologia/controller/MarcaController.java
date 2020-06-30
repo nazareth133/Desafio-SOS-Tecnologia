@@ -17,6 +17,7 @@ import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 
+//TODO alterar as entradas dos endpoints para BYTE[]
 @ApplicationScoped
 @Named(value = "marcaController")
 @Path("/api/sos-tecnologia")
