@@ -50,9 +50,11 @@
 
                     <p:button value="Gravar" icon="fa fa-floppy-o" href="/sostecnologia/patrimonio/criarPatrimonio.xhtml"></p:button>
                     <p:button value="Editar" icon="fa fa-pencil" href="/sostecnologia/patrimonio/editarPatrimonio.xhtml" onclick="#{patrimonioController.setSelectecPatrimonio(null)}"></p:button>
-                    <p:commandButton value="Excluir" url="#" update="@none" process="@this" icon="fa fa-times" >
+                    <p:commandButton value="Excluir" url="#" update="@none" style="background: red" process="@this" icon="fa fa-times" >
                         <f:ajax event="click" listener="#{patrimonioController.deletarPatrimonio(patrimonioController.selectedPatrimonio)}" execute="formulario"/>
                     </p:commandButton>
+                    <p:button value="Upload" icon="fa fa-upload" style="margin-left: 40px; background: green"></p:button>
+                    <p:button value="Download" icon="fa fa-download" style="background: orange"></p:button>
             </p:panel><br />
 
         </h:form>

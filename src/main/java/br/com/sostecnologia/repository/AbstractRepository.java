@@ -60,7 +60,7 @@ public abstract class AbstractRepository<T> implements CustomHibernateSession<T>
     public void delete(T entity) {
         try{
             userTransaction.begin();
-            entityManager.remove(entity);
+            entityManager.remove(entityManager.contains(entity) ? entity : entityManager.merge(entity));
             userTransaction.commit();
         }catch(Exception exception){
             logger.error(exception.getMessage(), exception);

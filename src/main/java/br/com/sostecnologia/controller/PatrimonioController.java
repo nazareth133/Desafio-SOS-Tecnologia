@@ -7,6 +7,7 @@ import br.com.sostecnologia.service.PatrimonioService;
 import br.com.sostecnologia.to.PatrimonioTO;
 import br.com.sostecnologia.util.ConstantsUtil;
 import br.com.sostecnologia.util.MappingUtil;
+import com.google.gson.Gson;
 import org.apache.log4j.Logger;
 import org.omnifaces.util.Faces;
 
@@ -80,6 +81,15 @@ public class PatrimonioController extends AbstractController {
     public Response deletarPatrimonio(@BeanParam Patrimonio patrimonio){
         logger.info(patrimonio);
         patrimonioService.deletarPatrimonio(patrimonio);
+        return Response.ok().build();
+    }
+
+    @DELETE
+    @Path("teste/{id}")
+    @Produces(MediaType.APPLICATION_JSON)
+    public Response teste(byte[] patrimonio, @PathParam("id") String id){
+        logger.info(new String(patrimonio) + "id:" + id);
+        patrimonioService.deletarPatrimonio(mappingUtil.toToEntity(new Gson().fromJson(new String(patrimonio), PatrimonioTO.class), Patrimonio.class));
         return Response.ok().build();
     }
 
